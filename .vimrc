@@ -13,12 +13,20 @@ Bundle 'gmarik/vundle'
 "" original repos on github
 
 Bundle 'fholgado/minibufexpl.vim'
+Bundle 'MarcWeber/vim-addon-mw-utils.git'
+Bundle 'tomtom/tlib_vim.git'
 Bundle 'pangloss/vim-javascript'
+Bundle 'honza/snipmate-snippets.git'
+Bundle 'garbas/vim-snipmate.git'
+Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'othree/javascript-syntax.vim'
+Bundle 'jiangmiao/simple-javascript-indenter'
 Bundle 'shyuan/vim-color-schemes'
 Bundle 'mattn/hahhah-vim'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'plasticboy/vim-markdown'
 
 filetype plugin indent on
 
@@ -27,9 +35,41 @@ filetype on
 filetype plugin on
 filetype indent on
 
-set enc=utf-8
+set cmdheight=2
+set ruler
+set showtabline=2
+
+
+autocmd BufRead,BufNewFile *.js set shiftwidth=2 expandtab colorcolumn=100
+" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8,ucs-bom,utf-bom,euj-jp,gbk,euc-krbig5,iso8859-1
+set termencoding=utf-8
+set fileformats=unix,dos fileformat=unix
+
+
+" General
+set nowrap
+set number
+
 set t_Co=256
 colorscheme colorful256
+language message zh_TW.UTF-8
 
 set laststatus=2
-set statusline=%f\ %y%r%1*%m%*\ %{g:HahHah()}%=%<\ [%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ x%02B\ %4c\ %4l\ [%P]
+"set statusline=%f\ %y%r%1*%m%*\ %{g:HahHah()}%=%<\ [%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ x%02B\ %4c\ %4l\ [%P]
+
+set statusline=%4*%<\ %1*[%F] 
+set statusline+=%4*\ %5*[%{&encoding}, " encoding 
+set statusline+=%{&fileformat}]%m " file format 
+set statusline+=%4*%=\ %6*%y%4*\ %3*%l%4*,\ %3*%c%4*\ \<\ %2*%P%4*\ \>  
+
+nnoremap <silent> <F8>          :set number!<CR>
+
+au WinLeave * set nocursorline
+au WinEnter * set cursorline
+set cursorline
+set cursorcolumn
+highlight cursorcolumn cterm=none ctermbg=237
+highlight cursorline cterm=none ctermbg=237
